@@ -1,0 +1,45 @@
+CREATE TABLE Titles(
+	title_id VARCHAR NOT NULL,
+	title VARCHAR NOT NULL,
+	PRIMARY KEY (title_id)
+	);
+
+CREATE TABLE Employees (
+	emp_no INTEGER NOT NULL,
+	emp_title VARCHAR NOT NULL,
+	birth_date DATE NOT NULL,
+	first_name VARCHAR NOT NULL,
+	last_name VARCHAR NOT NULL,
+	sex VARCHAR NOT NULL,
+	hire_date DATE NOT NULL,
+	PRIMARY KEY (emp_no),
+	FOREIGN KEY(emp_title) REFERENCES Titles (title_id)
+	);
+	
+CREATE TABLE Salaries (
+	emp_no INTEGER,
+	salary INTEGER,
+	PRIMARY KEY (emp_no),
+	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
+	);
+
+CREATE TABLE Manager (
+	dept_no VARCHAR,
+	emp_no INTEGER,
+	PRIMARY KEY (dept_no),
+	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
+	);
+
+CREATE TABLE Dept_emp (
+	emp_no INTEGER,
+	dept_no VARCHAR,
+	PRIMARY KEY (emp_no),
+	FOREIGN KEY (dept_no) REFERENCES Manager(dept_no)
+	);
+	
+CREATE TABLE Departments (
+	dept_no VARCHAR,
+	dept_name VARCHAR,
+	PRIMARY KEY (dept_no)
+	);
+	
